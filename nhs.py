@@ -31,7 +31,7 @@ dob_month = "01"
 dob_year = "1980"
 postcode_registered = "SW1A 1AA"
 postcode_search = "SW1A 1AA"
-appointment_dates = ["Wednesday 16 June", "Tuesday 15 June"]
+appointment_dates = ["Friday 28 May", "Saturday 29 May", "Sunday 30 May", "Monday 31 May"]
 access_needs_accessible_toilets = False
 access_needs_braille_translation = False
 access_needs_disabled_car_parking = False
@@ -177,6 +177,8 @@ def scrapsite(browser):
         site_soups = {'index': BeautifulSoup(browser.page_source, 'html.parser'), 'available_dates': []}
 
         available_vaccination_centres = len(browser.find_elements_by_class_name("SiteSelector"))
+        # uncomment to do closest 5 available centers only
+        #available_vaccination_centres = 5
         for i in range(available_vaccination_centres):
             browser.find_elements_by_class_name("SiteSelector")[i].click()
             site_soups['available_dates'].append(BeautifulSoup(browser.page_source, 'html.parser'))
@@ -232,6 +234,8 @@ def parse_available_dates(soups):
 
                 print(chosen_site)
                 print(appointment)
+                # make a bell sound using \a
+                print('\a')
                 print("---------------------")
 
 
